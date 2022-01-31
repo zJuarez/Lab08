@@ -8,6 +8,7 @@
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
@@ -19,7 +20,8 @@
 
     <div class="jumbotron">
       <h1 class="text-center">
-        <span class="fa fa-fire"></span> Hot Restaurant</h1>
+        <span class="fa fa-fire"></span> Hot Restaurant
+      </h1>
       <hr>
       <h2 class="text-center">Make your reservation</h2>
       <br>
@@ -43,7 +45,7 @@
             Table Reservation
           </div>
           <div class="card-body">
-            <form role="form">
+            <form role="form" id="reserve-form" action="/api/reserve" method="POST">
               <div class="form-group">
                 <label for="reserve-name">Name</label>
                 <input type="text" class="form-control" id="reserve-name">
@@ -60,7 +62,7 @@
                 <label for="reserve-unique-id">Unique ID</label>
                 <input type="text" class="form-control" id="reserve-unique-id">
               </div>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+              <button type="submit" class="btn btn-primary submit" id="form-submit">Submit</button>
             </form>
           </div>
         </div>
@@ -77,6 +79,23 @@
     </footer>
 
   </div>
+  <script type="text/javascript">
+    $("#form-submit").on("click", function (event) {
+      event.preventDefault();
+      var newTable = {
+        name: $("#reserve-name").val().trim(),
+        email: $("#reserve-email").val().trim(),
+        phone: $("#reserve-phone").val().trim(),
+        id: $("#reserve-unique-id").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/table", newTable)
+        .then(function (data) {
+          console.log("adding table: ", data);
+        });
+    });
+  </script>
 
 </body>
 
