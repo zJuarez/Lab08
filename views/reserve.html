@@ -92,7 +92,11 @@
       // Question: What does this code do??
       $.post("/api/table", newTable)
         .then(function (data) {
-          console.log("adding table: ", data);
+          if (data === true) {
+            alert('Added successfully to reservation table');
+          } else {
+            alert('Added  to wait list');
+          }
         });
     });
   </script>

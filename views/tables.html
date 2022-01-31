@@ -75,8 +75,29 @@
 <script type="text/javascript">
 
 
+  $(document).ready(function () {
+    $("#tableList").empty();
 
+    // Start your code from here
+    $.get('api/tables', (tables) => {
+      tables.forEach((table) => {
+        $('#tableList').append(getUl(table))
+      })
 
+    })
+    $.get('api/waitlist', (tables) => {
+      tables.forEach((table) => {
+        $('#waitList').append(getUl(table))
+      })
+
+    })
+
+  });
+  const getUl = (table) => {
+    const reservation = document.createElement('ul')
+    reservation.innerHTML = `Reservation for ${table.name} with phone ${table.phone} and email ${table.email} `;
+    return reservation;
+  }
 </script>
 
 </html>
