@@ -92,6 +92,12 @@
 
     })
 
+    $("#clear").click(function () {
+      $.post('api/clear')
+      window.location.replace("http://localhost:3000/tables");
+
+    })
+
   });
   const getUl = (table) => {
     const reservation = document.createElement('ul')

@@ -84,6 +84,17 @@ app.post('/api/table', function(req, res) {
   }
 });
 
+
+// Create New Reserve - takes in JSON input
+app.post('/api/clear', function(req, res) {
+  tables = [];
+  let i;
+    for (i = 0; i < waitlist.length && tables.length < 5; i++) 
+    tables.push(waitlist[i])
+  waitlist.splice(0,i);
+
+});
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
